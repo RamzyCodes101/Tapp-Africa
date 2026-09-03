@@ -56,6 +56,13 @@
     return "tapp.africa/" + (slug || "you");
   }
 
+  function getQRCanvas(text, size) {
+    if (typeof QRCode === "undefined") return null;
+    const holder = document.createElement("div");
+    new QRCode(holder, { text, width: size, height: size, colorDark: "#14100d", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.M });
+    return holder.querySelector("canvas");
+  }
+
   function drawFace({ colorA, colorB, back, name, role }) {
     const W = 1024, H = 645;
     const c = document.createElement("canvas");
@@ -116,8 +123,18 @@
       roundRectPath(ctx, 70, 70, 92, 66, 12);
       ctx.fillStyle = "rgba(255,255,255,0.5)";
       ctx.fill();
-      ctx.fillStyle = "#fff";
+
       const handle = handleFromName(safeName);
+      const qrCanvas = getQRCanvas("https://" + handle, 260);
+      if (qrCanvas) {
+        const qrSize = 130, pad = 14, qrX = W - 70 - qrSize, qrY = 70;
+        roundRectPath(ctx, qrX - pad, qrY - pad, qrSize + pad * 2, qrSize + pad * 2, 14);
+        ctx.fillStyle = "#fff";
+        ctx.fill();
+        ctx.drawImage(qrCanvas, qrX, qrY, qrSize, qrSize);
+      }
+
+      ctx.fillStyle = "#fff";
       const handleSize = fitFont(ctx, handle, 600, "Space Grotesk", 34, W - 140);
       ctx.font = `600 ${handleSize}px 'Space Grotesk', sans-serif`;
       ctx.fillText(handle, 70, H - 80);
