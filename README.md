@@ -13,8 +13,9 @@ and palette.
 
 ## Pages
 
-- **`index.html`** — Home: hero, marquee, a teaser of each other page, features
-  teaser, stats, testimonials, CTA.
+- **`index.html`** — Home: hero, marquee, a teaser of each other page, a
+  "connects" integrations cloud (app chips wired to a central TAPP hub,
+  flying in on scroll), features grid, stats, testimonials, CTA.
 - **`story.html`** — "Our Story": a scroll-driven narrative walking through
   six behavioral-science ideas (the forgetting curve, loss aversion, the
   primacy effect, reciprocity, staying current, the peak-end rule) and why
@@ -35,6 +36,9 @@ Plain HTML/CSS/JS — no build step.
 - `js/script.js` — shared interactions on every page: nav, mobile menu, FAQ
   accordion, carousels, plus GSAP + ScrollTrigger scroll animations
 - `js/three-hero.js` — Home only: ambient particle "network" behind the hero
+- `js/connects.js` — Home only: draws the integrations cloud's connector
+  lines (via live `getBoundingClientRect` math) and its scroll-triggered
+  entrance; degrades to a plain scrollable chip row on narrow screens
 - `js/three-story.js` — Story only: the morphing scrollytelling particle scene
 - `js/three-card.js` — Card only: the interactive 3D card viewer
 - `js/lanyard.js` — Card only: the draggable, swinging lanyard badge

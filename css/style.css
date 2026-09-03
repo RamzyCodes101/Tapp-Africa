@@ -1722,3 +1722,137 @@ html.no-anim .story-panel__card {
 @media (max-width: 480px) {
   .tap-demo__phone { width: 220px; height: 450px; }
 }
+
+/* ---------- Connects / integrations cloud (Home features section) ---------- */
+.connects { margin: 10px 0 60px; }
+
+.connects__cloud {
+  position: relative;
+  height: 420px;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.connects__lines { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+.connects__line {
+  position: absolute;
+  height: 1.5px;
+  background: linear-gradient(90deg, rgba(20, 16, 13, 0.22), rgba(20, 16, 13, 0));
+  transform-origin: 0 50%;
+}
+
+.connects__hub {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.connects__hub-inner {
+  width: 86px; height: 86px;
+  border-radius: 50%;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 22px 44px -14px rgba(20, 16, 13, 0.45);
+  position: relative;
+  isolation: isolate;
+}
+
+.connects__hub-inner::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--pink);
+  opacity: 0.55;
+  animation: tap-pulse 2.4s ease-out infinite;
+  z-index: -1;
+}
+
+.connects__hub-inner svg { width: 32px; height: 32px; color: var(--cream); }
+
+.connect-chip {
+  position: absolute;
+  top: var(--ty); left: var(--tx);
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 16px 9px 9px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 14px 26px -14px rgba(20, 16, 13, 0.28);
+  z-index: 2;
+  animation: chip-float 5s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes chip-float {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -9px; }
+}
+
+.connect-chip__icon {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.connect-chip__icon svg { width: 14px; height: 14px; }
+
+.connect-chip__badge {
+  position: absolute;
+  top: -5px; right: -5px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: var(--pink);
+  border: 2px solid var(--cream);
+}
+
+.connects__stats {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+
+.connects__stat strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--pink-dark);
+}
+
+.connects__stat span { font-size: 0.82rem; opacity: 0.65; }
+
+@media (max-width: 768px) {
+  .connects__cloud {
+    height: auto;
+    max-width: 100%;
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 10px 4px 20px;
+  }
+  .connects__hub, .connects__lines { display: none; }
+  .connect-chip {
+    position: static;
+    transform: none;
+    animation: none;
+    flex: 0 0 auto;
+  }
+  .connects__stats { grid-template-columns: 1fr; gap: 14px; }
+}
