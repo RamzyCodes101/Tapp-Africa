@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Checkout — TAPP African</title>
+<meta name="description" content="Complete your TAPP card order — secure checkout powered by Paystack." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/style.css" />
+
+<script>
+  (function () {
+    function forceReveal() {
+      document.documentElement.classList.add("no-anim");
+      var pre = document.getElementById("preloader");
+      if (pre) pre.remove();
+    }
+    window.__tappForceReveal = forceReveal;
+    window.addEventListener("load", function () {
+      setTimeout(function () {
+        if (typeof window.gsap === "undefined") forceReveal();
+      }, 2500);
+    });
+  })();
+</script>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="preloader" id="preloader">
+  <div class="preloader__mark" id="preloaderMark">TAPP</div>
+</div>
+
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="siteNav">
+  <div class="container nav__inner">
+    <a href="index.html" class="logo">
+      <span class="logo-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg>
+      </span>
+      TAPP<span style="color:var(--pink)">.</span>
+    </a>
+    <nav class="nav__links">
+      <a href="index.html">Home</a>
+      <a href="story.html">Our Story</a>
+      <a href="card.html">The Card</a>
+      <a href="pricing.html" class="is-active">Pricing</a>
+    </nav>
+    <div class="nav__actions">
+      <a href="pricing.html" class="btn btn--ghost">Back to plans</a>
+      <button class="nav__burger" id="burgerBtn" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="story.html">Our Story</a>
+  <a href="card.html">The Card</a>
+  <a href="pricing.html">Pricing</a>
+</div>
+
+<main>
+
+  <!-- ================= PAGE HERO ================= -->
+  <section class="page-hero page-hero--pricing" style="padding-bottom:60px">
+    <div class="container">
+      <div class="eyebrow">Checkout</div>
+      <h1 id="checkoutPlanTitle">Complete your order</h1>
+      <p>Secure checkout powered by Paystack. Your card ships as soon as payment clears.</p>
+    </div>
+  </section>
+
+  <!-- ================= CHECKOUT ================= -->
+  <section id="checkout">
+    <div class="container checkout-grid">
+      <form class="checkout-form" id="checkoutForm">
+        <h2>Shipping details</h2>
+        <div class="form-row">
+          <label for="cFullName">Full name</label>
+          <input required id="cFullName" type="text" placeholder="Amara Boateng" autocomplete="name" />
+        </div>
+        <div class="form-row form-row--2">
+          <div>
+            <label for="cEmail">Email</label>
+            <input required id="cEmail" type="email" placeholder="you@email.com" autocomplete="email" />
+          </div>
+          <div>
+            <label for="cPhone">Phone</label>
+            <input required id="cPhone" type="tel" placeholder="+233 555 123 456" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="cAddress">Delivery address</label>
+          <textarea required id="cAddress" placeholder="Street, city, country"></textarea>
+        </div>
+
+        <h2>Your card</h2>
+        <div class="form-row">
+          <label>Colorway</label>
+          <div class="checkout-swatches" id="checkoutSwatches">
+            <button type="button" class="swatch is-active" data-a="#e8622c" data-b="#ff2e82" data-label="Kente Sunrise" style="background:linear-gradient(135deg,#e8622c,#ff2e82)" aria-label="Kente Sunrise"></button>
+            <button type="button" class="swatch" data-a="#6b2fb3" data-b="#35dde0" data-label="Indigo Adire" style="background:linear-gradient(135deg,#6b2fb3,#35dde0)" aria-label="Indigo Adire"></button>
+            <button type="button" class="swatch" data-a="#14100d" data-b="#4b1f82" data-label="Midnight Ebony" style="background:linear-gradient(135deg,#14100d,#4b1f82)" aria-label="Midnight Ebony"></button>
+            <button type="button" class="swatch" data-a="#ffd53d" data-b="#e8622c" data-label="Nile Wave" style="background:linear-gradient(135deg,#ffd53d,#e8622c)" aria-label="Nile Wave"></button>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Quantity</label>
+          <div class="checkout-qty">
+            <button type="button" id="qtyMinus" aria-label="Decrease quantity">−</button>
+            <span id="qtyValue">1</span>
+            <button type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+      </form>
+
+      <aside class="checkout-summary">
+        <div class="checkout-summary__plan">
+          <div class="tapp-card" id="summaryCard">
+            <div class="tapp-card__top">
+              <div class="tapp-card__chip"></div>
+              <svg class="tapp-card__wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="tapp-card__name" id="summaryCardName">Amara Boateng</div>
+              <div class="tapp-card__role" id="summaryCardColor">Kente Sunrise</div>
+            </div>
+          </div>
+        </div>
+        <h3 id="summaryPlanName">Pro plan</h3>
+        <p id="summaryPlanDesc">Eco wood finish plus payment links and full analytics.</p>
+        <div class="checkout-summary__lines">
+          <div><span>Price</span><span id="summaryUnitPrice">₵410.00</span></div>
+          <div><span>Quantity</span><span id="summaryQty">× 1</span></div>
+        </div>
+        <div class="checkout-summary__total"><span>Total</span><span id="summaryTotal">₵410.00</span></div>
+        <button type="submit" form="checkoutForm" class="btn btn--pink btn--block" id="payButton">Pay with Paystack</button>
+        <div class="checkout-error" id="checkoutError" hidden></div>
+        <div class="checkout-notice" id="checkoutNotice" hidden>
+          Checkout isn't live yet — add your Paystack public key in <code>js/checkout.js</code> to accept real payments.
+        </div>
+        <p class="checkout-summary__note">Payments secured by Paystack. We never see or store your card details.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= SUCCESS ================= -->
+  <section id="checkoutSuccess" hidden>
+    <div class="container checkout-success">
+      <div class="checkout-success__icon">✓</div>
+      <h2>You're all tapped in.</h2>
+      <p>Order <strong id="successRef"></strong> confirmed — a receipt is on its way to your email, and your card ships within 3–5 business days.</p>
+      <a href="index.html" class="btn btn--ink">Back to home</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="logo">
+          <span class="logo-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg>
+          </span>
+          TAPP<span style="color:var(--pink)">.</span>
+        </a>
+        <p>Africa's smart networking card. Tap once, connect for life.</p>
+        <form class="footer__newsletter" onsubmit="return false">
+          <input type="email" placeholder="Your email" required />
+          <button type="submit">Join →</button>
+        </form>
+      </div>
+      <div class="footer__col">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="story.html">Our Story</a></li>
+          <li><a href="card.html">The Card</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="pricing.html#faq">FAQ</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 TAPP African. Made with pride, across Africa.</span>
+      <div class="footer__socials">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3v10.5a3.5 3.5 0 1 1-3-3.46V7a7 7 0 0 0 7 4V8a4 4 0 0 1-4-5Z" stroke-linejoin="round"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="js/script.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>
