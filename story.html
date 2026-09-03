@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Story — TAPP African</title>
+<meta name="description" content="The psychology behind TAPP: why paper cards get forgotten and a tap doesn't. Forgetting curve, loss aversion, primacy effect, reciprocity, and the peak-end rule." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/style.css" />
+
+<script>
+  (function () {
+    function forceReveal() {
+      document.documentElement.classList.add("no-anim");
+      var pre = document.getElementById("preloader");
+      if (pre) pre.remove();
+    }
+    window.__tappForceReveal = forceReveal;
+    window.addEventListener("load", function () {
+      setTimeout(function () {
+        if (typeof window.gsap === "undefined") forceReveal();
+      }, 2500);
+    });
+  })();
+</script>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="preloader" id="preloader">
+  <div class="preloader__mark" id="preloaderMark">TAPP</div>
+</div>
+
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="siteNav">
+  <div class="container nav__inner">
+    <a href="index.html" class="logo">
+      <span class="logo-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg>
+      </span>
+      TAPP<span style="color:var(--pink)">.</span>
+    </a>
+    <nav class="nav__links">
+      <a href="index.html">Home</a>
+      <a href="story.html" class="is-active">Our Story</a>
+      <a href="card.html">The Card</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <div class="nav__actions">
+      <a href="pricing.html" class="btn btn--pink">Get Your Tapp</a>
+      <button class="nav__burger" id="burgerBtn" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="story.html">Our Story</a>
+  <a href="card.html">The Card</a>
+  <a href="pricing.html">Pricing</a>
+</div>
+
+<main>
+
+  <!-- ================= PAGE HERO ================= -->
+  <section class="page-hero page-hero--story">
+    <div class="container">
+      <div class="eyebrow">Why we built TAPP</div>
+      <h1>The psychology of a tap.</h1>
+      <p>Six ideas from behavioral science explain why paper business cards fail — and why a single tap works better. Scroll to see them unfold.</p>
+    </div>
+  </section>
+
+  <!-- ================= STORY INTRO ================= -->
+  <div class="story-intro">
+    <div class="container">
+      <p class="hand-note" style="font-size:1.6rem;max-width:520px;margin-inline:auto">Every relationship starts with a tiny, forgettable moment.<br>This is the science of making it stick.</p>
+    </div>
+  </div>
+
+  <!-- ================= SCROLLYTELLING SCENES ================= -->
+  <section class="story-scenes">
+    <div class="story-visual">
+      <div class="story-visual__fallback"></div>
+      <canvas id="storyCanvas"></canvas>
+    </div>
+
+    <div class="story-panels">
+      <div class="story-panel" data-scene="chaos">
+        <div class="story-panel__card">
+          <span class="story-panel__tag">Beat 01 — The Forgetting Curve</span>
+          <h2>You'll forget most of today by tomorrow.</h2>
+          <p>Psychologist Hermann Ebbinghaus found we lose over half of new information within an hour, and nearly 70% within a day — including the person you just met.</p>
+          <p>A business card sitting in a drawer doesn't fight that curve. It just waits to be thrown away.</p>
+        </div>
+      </div>
+
+      <div class="story-panel story-panel--right" data-scene="cardBreak">
+        <div class="story-panel__card">
+          <span class="story-panel__tag">Beat 02 — Loss Aversion</span>
+          <h2>Paper doesn't survive contact with real life.</h2>
+          <p>It gets left on a table, soaked in a bag, tossed by accident. Behavioral economists have shown the sting of losing something outweighs the pleasure of gaining it — so every lost card is a small, real loss.</p>
+          <p>TAPP can't be lost in a drawer. Your profile lives online, not in a pocket.</p>
+        </div>
+      </div>
+
+      <div class="story-panel" data-scene="handshakeMerge">
+        <div class="story-panel__card">
+          <span class="story-panel__tag">Beat 03 — The Primacy Effect</span>
+          <h2>You decide who someone is in seconds.</h2>
+          <p>Solomon Asch's classic research showed the first few things we learn about a person color everything that follows. A fumbled card exchange is a bad first impression — a confident tap is a good one.</p>
+          <p>One motion. No fumbling for a pen, an app, or a spelling of your name.</p>
+        </div>
+      </div>
+
+      <div class="story-panel story-panel--right" data-scene="rippleWaves">
+        <div class="story-panel__card">
+          <span class="story-panel__tag">Beat 04 — Reciprocity</span>
+          <h2>Make it easy to give, and people give back.</h2>
+          <p>Robert Cialdini's research on reciprocity found people feel a pull to return a favor — even a small one, like being handed everything they need without having to ask twice.</p>
+          <p>TAPP hands over your number, socials, portfolio and links upfront. No "can I get your Instagram?"</p>
+        </div>
+      </div>
+
+      <div class="story-panel" data-scene="gatherGlow">
+        <div class="story-panel__card">
+          <span class="story-panel__tag">Beat 05 — Staying Current</span>
+          <h2>Most cards are outdated the day you print them.</h2>
+          <p>New job, new number, new handle — a paper card can't keep up, so it quietly becomes wrong. That small mismatch erodes trust every time it's noticed.</p>
+          <p>Every TAPP card updates the instant you do. What they tap today is always current.</p>
+        </div>
+      </div>
+
+      <div class="story-panel story-panel--right" data-scene="cardFinal">
+        <div class="story-panel__card">
+          <span class="story-panel__tag">Beat 06 — The Peak-End Rule</span>
+          <h2>People remember the peak, and the end.</h2>
+          <p>Nobel laureate Daniel Kahneman found we judge experiences by their most intense moment and how they finish — not the average. A tap is a small, tactile, slightly surprising peak in an otherwise forgettable exchange.</p>
+          <p>That's the moment TAPP is built for.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OUTRO CTA ================= -->
+  <section>
+    <div class="story-outro">
+      <div class="eyebrow" style="justify-content:center;color:var(--yellow)">Now you know why</div>
+      <h2>Ready to be the moment they remember?</h2>
+      <p>See the card up close, or jump straight to pricing.</p>
+      <div class="btn-row">
+        <a href="card.html" class="btn btn--light">Explore the card</a>
+        <a href="pricing.html" class="btn btn--ghost" style="border-color:var(--white);color:var(--white)">See pricing</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="index.html" class="logo">
+          <span class="logo-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg>
+          </span>
+          TAPP<span style="color:var(--pink)">.</span>
+        </a>
+        <p>Africa's smart networking card. Tap once, connect for life.</p>
+        <form class="footer__newsletter" onsubmit="return false">
+          <input type="email" placeholder="Your email" required />
+          <button type="submit">Join →</button>
+        </form>
+      </div>
+      <div class="footer__col">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="story.html">Our Story</a></li>
+          <li><a href="card.html">The Card</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="pricing.html#faq">FAQ</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 TAPP African. Made with pride, across Africa.</span>
+      <div class="footer__socials">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3v10.5a3.5 3.5 0 1 1-3-3.46V7a7 7 0 0 0 7 4V8a4 4 0 0 1-4-5Z" stroke-linejoin="round"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/three-story.js"></script>
+</body>
+</html>

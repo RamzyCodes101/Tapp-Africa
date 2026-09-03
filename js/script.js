@@ -6,7 +6,7 @@
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const hasGSAP = typeof gsap !== "undefined";
+  const hasGSAP = typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined";
   if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
 
   /* ---------- Mobile menu (always) ---------- */
@@ -23,20 +23,22 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateNav, { passive: true });
   updateNav();
 
-  /* ---------- Swatch color switcher (always) ---------- */
+  /* ---------- Hero card swatch color switcher (Home page only) ---------- */
   const heroCard = document.getElementById("heroCard");
-  document.querySelectorAll(".swatch").forEach((sw) => {
-    sw.addEventListener("click", () => {
-      document.querySelectorAll(".swatch").forEach((s) => s.classList.remove("is-active"));
-      sw.classList.add("is-active");
-      if (hasGSAP) {
-        gsap.to(heroCard, { "--card-a": sw.dataset.a, "--card-b": sw.dataset.b, duration: 0.5 });
-      } else {
-        heroCard.style.setProperty("--card-a", sw.dataset.a);
-        heroCard.style.setProperty("--card-b", sw.dataset.b);
-      }
+  if (heroCard) {
+    document.querySelectorAll(".hero__swatches .swatch").forEach((sw) => {
+      sw.addEventListener("click", () => {
+        document.querySelectorAll(".hero__swatches .swatch").forEach((s) => s.classList.remove("is-active"));
+        sw.classList.add("is-active");
+        if (hasGSAP) {
+          gsap.to(heroCard, { "--card-a": sw.dataset.a, "--card-b": sw.dataset.b, duration: 0.5 });
+        } else {
+          heroCard.style.setProperty("--card-a", sw.dataset.a);
+          heroCard.style.setProperty("--card-b", sw.dataset.b);
+        }
+      });
     });
-  });
+  }
 
   /* ---------- Generic horizontal carousel (always) ---------- */
   function initCarousel(trackId, prevId, nextId) {

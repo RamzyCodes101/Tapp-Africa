@@ -11,26 +11,48 @@ marker annotations, tilted 3D product renders, and a horizontal carousel
 with circular nav arrows), adapted to TAPP's own African-inspired product
 and palette.
 
+## Pages
+
+- **`index.html`** — Home: hero, marquee, a teaser of each other page, features
+  teaser, stats, testimonials, CTA.
+- **`story.html`** — "Our Story": a scroll-driven narrative walking through
+  six behavioral-science ideas (the forgetting curve, loss aversion, the
+  primacy effect, reciprocity, staying current, the peak-end rule) and why
+  they explain why a tap beats a paper card. A single Three.js particle
+  system morphs through six formations as you scroll past each beat.
+- **`card.html`** — "The Card": an interactive drag-to-rotate 3D card
+  (Three.js, with a live canvas-texture front/back you can recolor), a
+  lanyard/badge showcase you can grab and swing, the designs carousel,
+  the "how it works" steps, the packaging section, and the full features
+  grid.
+- **`pricing.html`** — Pricing plans, stats, FAQ, and a closing CTA.
+
 ## Stack
 
 Plain HTML/CSS/JS — no build step.
 
-- `index.html` — page markup
 - `css/style.css` — all styling (CSS custom properties, responsive layout)
-- `js/script.js` — interactions (nav, mobile menu, FAQ accordion, carousels)
-  plus GSAP + ScrollTrigger scroll animations, loaded from cdnjs
+- `js/script.js` — shared interactions on every page: nav, mobile menu, FAQ
+  accordion, carousels, plus GSAP + ScrollTrigger scroll animations
+- `js/three-hero.js` — Home only: ambient particle "network" behind the hero
+- `js/three-story.js` — Story only: the morphing scrollytelling particle scene
+- `js/three-card.js` — Card only: the interactive 3D card viewer
+- `js/lanyard.js` — Card only: the draggable, swinging lanyard badge
+- GSAP, ScrollTrigger, and Three.js are all loaded from cdnjs
 
-If the GSAP CDN fails to load, the site falls back to a fully usable static
-version — core interactions (menu, FAQ, carousels) don't depend on GSAP, and
-all GSAP-hidden content (opacity 0 by default, meant to be revealed on
-scroll/load) is force-revealed via a `no-anim` class after a short timeout.
+Every animated piece degrades gracefully. If GSAP/ScrollTrigger fails to
+load, each page force-reveals its GSAP-hidden content (opacity 0 by default,
+meant to be revealed on scroll/load) via a `no-anim` class after a short
+timeout, and every core interaction (menu, FAQ, carousels) works without
+GSAP at all. If Three.js fails to load, the affected canvas areas simply
+stay empty — their containers already have a matching CSS background, so
+nothing looks broken.
 
 ## Running locally
 
 No build step needed — just serve the folder:
 
 ```bash
-cd tapp_african
 python3 -m http.server 8000
 ```
 

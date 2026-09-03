@@ -1079,6 +1079,14 @@ html.no-anim #heroCard {
   opacity: 1 !important;
 }
 
+/* Story panels only ever get their .is-active reveal class from
+   ScrollTrigger (three-story.js) — without it the text would stay
+   permanently invisible, so force it visible in the fallback. */
+html.no-anim .story-panel__card {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 /* ---------- Cursor magnetic dot (desktop only) ---------- */
 .cursor-dot {
   position: fixed; top: 0; left: 0;
@@ -1121,4 +1129,415 @@ html.no-anim #heroCard {
   .marquee-track span { font-size: 1rem; }
   .packaging__note, .packaging__note--right { position: static; margin-top: 20px; text-align: center; }
   .hero__ship-note { display: none; }
+}
+
+/* ==========================================================================
+   Multi-page additions — nav active state, sub-page hero, Three.js canvases,
+   explore teaser grid, story scrollytelling, interactive card viewer
+   ========================================================================== */
+
+/* ---------- Nav active state ---------- */
+.nav__links a.is-active { color: var(--pink-dark); }
+.nav__links a.is-active::after { transform: scaleX(1); background: var(--pink-dark); }
+
+/* ---------- Hero Three.js canvas (Home) ---------- */
+.hero__three {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* ---------- Sub-page hero banner (Story / Card / Pricing) ---------- */
+.page-hero {
+  position: relative;
+  padding: 160px 0 90px;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  overflow: hidden;
+  text-align: center;
+}
+
+.page-hero--story { background: var(--purple); color: var(--white); }
+.page-hero--card { background: var(--orange); color: var(--white); }
+.page-hero--pricing { background: var(--cyan); color: var(--ink); }
+
+.page-hero .eyebrow { justify-content: center; }
+.page-hero--story .eyebrow, .page-hero--card .eyebrow { color: var(--yellow); }
+.page-hero--pricing .eyebrow { color: var(--purple); }
+
+.page-hero h1 {
+  margin-top: 16px;
+  font-size: clamp(2.4rem, 5.6vw, 4rem);
+  max-width: 780px;
+  margin-inline: auto;
+}
+
+.page-hero p {
+  margin: 22px auto 0;
+  max-width: 520px;
+  font-size: 1.08rem;
+  opacity: 0.9;
+}
+
+/* ---------- Explore teaser grid (Home) ---------- */
+.explore__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.explore-card {
+  border-radius: var(--radius-md);
+  padding: 38px 32px;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.explore-card:hover { transform: translateY(-8px); }
+.explore-card--purple { background: var(--purple); }
+.explore-card--orange { background: var(--orange); }
+.explore-card--cyan { background: var(--cyan); color: var(--ink); }
+
+.explore-card__num {
+  position: absolute;
+  top: 26px; left: 32px;
+  font-family: var(--font-hand);
+  font-size: 1.6rem;
+  opacity: 0.8;
+}
+
+.explore-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+.explore-card p { font-size: 0.95rem; opacity: 0.85; margin-bottom: 20px; }
+
+.explore-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.explore-card__link svg { width: 16px; height: 16px; transition: transform 0.3s ease; }
+.explore-card:hover .explore-card__link svg { transform: translateX(4px); }
+
+/* ---------- Story page: scrollytelling ---------- */
+.story-scenes { position: relative; }
+
+.story-visual {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: var(--ink);
+  overflow: hidden;
+}
+
+.story-visual canvas { display: block; width: 100%; height: 100%; position: absolute; inset: 0; z-index: 1; }
+
+.story-visual__fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle at 50% 40%, var(--purple), var(--ink) 70%);
+}
+
+.story-panels {
+  margin-top: -100vh;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.story-panel {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 6%;
+}
+
+.story-panel__card {
+  pointer-events: auto;
+  max-width: 560px;
+  background: rgba(20, 16, 13, 0.55);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 248, 237, 0.15);
+  border-radius: var(--radius-md);
+  padding: 40px 44px;
+  color: var(--cream);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.story-panel.is-active .story-panel__card { opacity: 1; transform: translateY(0); }
+
+.story-panel__tag {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  color: var(--yellow);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.story-panel__card h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  color: var(--white);
+}
+
+.story-panel__card p {
+  margin-top: 16px;
+  font-size: 1.02rem;
+  opacity: 0.85;
+  line-height: 1.55;
+}
+
+.story-panel__card p + p { margin-top: 10px; }
+
+.story-panel--right { justify-content: flex-end; }
+.story-panel--right .story-panel__card { text-align: right; }
+
+.story-intro, .story-outro {
+  padding: 120px 0;
+  text-align: center;
+}
+
+.story-outro { background: var(--purple); color: var(--white); border-radius: var(--radius-lg); width: min(94%, 1300px); margin-inline: auto; }
+.story-outro h2 { font-size: clamp(2rem, 4.6vw, 3.2rem); max-width: 700px; margin: 16px auto 0; }
+.story-outro p { margin: 20px auto 34px; max-width: 480px; opacity: 0.85; }
+.story-outro .btn-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* ---------- Card page: interactive 3D viewer ---------- */
+.card-viewer {
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.card-viewer__stage {
+  position: relative;
+  aspect-ratio: 1.35 / 1;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(160deg, var(--cream-2), var(--cream));
+  border: 1px solid var(--line);
+  overflow: hidden;
+  cursor: grab;
+}
+
+.card-viewer__stage:active { cursor: grabbing; }
+.card-viewer__stage canvas { display: block; width: 100%; height: 100%; }
+
+.card-viewer__hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-soft, var(--ink));
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.card-viewer__swatches {
+  margin-top: 26px;
+  display: flex;
+  gap: 10px;
+}
+
+.card-viewer__swatches .swatch { width: 30px; height: 30px; }
+
+.card-viewer__copy h2 { font-size: clamp(2rem, 4vw, 2.8rem); }
+.card-viewer__copy p { margin-top: 18px; max-width: 420px; }
+
+@media (max-width: 980px) {
+  .explore__grid { grid-template-columns: 1fr; }
+  .card-viewer { grid-template-columns: 1fr; }
+  .story-panel__card { max-width: 100%; }
+}
+
+@media (max-width: 640px) {
+  .page-hero { padding: 130px 0 60px; }
+  .story-panel__card { padding: 28px 26px; }
+  .story-intro, .story-outro { padding: 80px 0; }
+}
+
+/* ---------- Badge / lanyard showcase (Card page) ---------- */
+.badge-showcase {
+  background: var(--purple);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  width: min(94%, 1300px);
+  margin-inline: auto;
+  padding: 100px 6% 80px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.badge-showcase .eyebrow { justify-content: center; color: var(--yellow); }
+.badge-showcase h2 { margin-top: 16px; font-size: clamp(2rem, 4.4vw, 3.2rem); }
+.badge-showcase__lead { margin: 18px auto 0; max-width: 480px; opacity: 0.85; }
+
+.lanyard-stage {
+  position: relative;
+  height: 560px;
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.lanyard-stage__blob {
+  position: absolute;
+  width: 520px; height: 520px;
+  background: var(--yellow);
+  opacity: 0.16;
+  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+  top: -70px;
+}
+
+.lanyard-hang {
+  position: relative;
+  transform-origin: top center;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.lanyard-hang:active { cursor: grabbing; }
+
+.lanyard-strap {
+  width: 34px;
+  height: 200px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, var(--pink), var(--pink-dark));
+  border-radius: 6px;
+  position: relative;
+}
+
+.lanyard-strap::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 0; bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateX(-50%);
+}
+
+.lanyard-clip__ring {
+  width: 18px; height: 18px;
+  border: 4px solid #d8d8d8;
+  border-radius: 50%;
+  margin: -2px auto 0;
+  background: linear-gradient(135deg, #f4f4f4, #a9a9a9);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.lanyard-clip__body {
+  width: 16px; height: 20px;
+  background: linear-gradient(135deg, #f4f4f4, #9a9a9a);
+  margin: -2px auto 0;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.lanyard-card {
+  --card-a: var(--orange);
+  --card-b: var(--pink);
+  width: 280px;
+  aspect-ratio: 1.586 / 1;
+  border-radius: 18px;
+  margin: 6px auto 0;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 30px 60px -18px rgba(0, 0, 0, 0.5);
+}
+
+.lanyard-card__face {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--card-a), var(--card-b));
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--white);
+}
+
+.lanyard-card__hole {
+  position: absolute;
+  top: 10px; left: 50%;
+  width: 14px; height: 14px;
+  background: var(--purple);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.lanyard-card__pattern span {
+  position: absolute;
+  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.lanyard-card__pattern span:nth-child(1) { width: 140px; height: 140px; top: -40px; right: -40px; }
+.lanyard-card__pattern span:nth-child(2) { width: 90px; height: 90px; bottom: -30px; left: -20px; background: rgba(20, 16, 13, 0.14); }
+
+.lanyard-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+  margin-top: 12px;
+}
+
+.lanyard-card__chip {
+  width: 34px; height: 24px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
+}
+
+.lanyard-name-pill {
+  position: absolute;
+  left: 50%; bottom: -16px;
+  transform: translateX(-50%) rotate(-2deg);
+  background: var(--yellow);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.98rem;
+  padding: 10px 22px;
+  border-radius: 999px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  z-index: 3;
+}
+
+.badge-showcase__hint {
+  margin-top: 50px;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .lanyard-stage { height: 480px; }
+  .lanyard-card { width: 230px; }
 }
