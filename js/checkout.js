@@ -124,6 +124,25 @@
     els.summaryCardName.textContent = els.fullName.value || "Your name here";
   });
 
+  /* ---------- prefill from any customization saved on the Card page ---------- */
+  (function prefillFromCardPage() {
+    let savedName, savedColorA;
+    try {
+      savedName = localStorage.getItem("tapp_custom_name");
+      savedColorA = localStorage.getItem("tapp_custom_color_a");
+    } catch (e) {
+      return;
+    }
+    if (savedName) {
+      els.fullName.value = savedName;
+      els.summaryCardName.textContent = savedName;
+    }
+    if (savedColorA) {
+      const match = Array.from(els.swatches).find((s) => s.dataset.a === savedColorA);
+      if (match) match.click();
+    }
+  })();
+
   function showError(msg) {
     els.errorBox.textContent = msg;
     els.errorBox.hidden = false;

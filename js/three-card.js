@@ -41,11 +41,28 @@
     ctx.closePath();
   }
 
-  function drawFace({ colorA, colorB, back }) {
+  function fitFont(ctx, text, weight, family, maxSize, maxWidth) {
+    let size = maxSize;
+    ctx.font = `${weight} ${size}px '${family}', sans-serif`;
+    while (size > 18 && ctx.measureText(text).width > maxWidth) {
+      size -= 2;
+      ctx.font = `${weight} ${size}px '${family}', sans-serif`;
+    }
+    return size;
+  }
+
+  function handleFromName(name) {
+    const slug = (name || "you").toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 16);
+    return "tapp.africa/" + (slug || "you");
+  }
+
+  function drawFace({ colorA, colorB, back, name, role }) {
     const W = 1024, H = 645;
     const c = document.createElement("canvas");
     c.width = W; c.height = H;
     const ctx = c.getContext("2d");
+    const safeName = (name || "Your Name").trim() || "Your Name";
+    const safeRole = (role || "").trim();
 
     roundRectPath(ctx, 0, 0, W, H, 56);
     ctx.clip();
@@ -85,19 +102,25 @@
       ctx.globalAlpha = 1;
 
       ctx.fillStyle = "#fff";
-      ctx.font = "700 46px 'Unbounded', sans-serif";
-      ctx.fillText("Amara Boateng", 70, H - 110);
-      ctx.font = "500 30px 'Space Grotesk', sans-serif";
-      ctx.globalAlpha = 0.85;
-      ctx.fillText("Founder · Studio Kente", 70, H - 62);
-      ctx.globalAlpha = 1;
+      const nameSize = fitFont(ctx, safeName, 700, "Unbounded", 46, W - 140);
+      ctx.font = `700 ${nameSize}px 'Unbounded', sans-serif`;
+      ctx.fillText(safeName, 70, H - 110);
+      if (safeRole) {
+        const roleSize = fitFont(ctx, safeRole, 500, "Space Grotesk", 30, W - 140);
+        ctx.font = `500 ${roleSize}px 'Space Grotesk', sans-serif`;
+        ctx.globalAlpha = 0.85;
+        ctx.fillText(safeRole, 70, H - 62);
+        ctx.globalAlpha = 1;
+      }
     } else {
       roundRectPath(ctx, 70, 70, 92, 66, 12);
       ctx.fillStyle = "rgba(255,255,255,0.5)";
       ctx.fill();
       ctx.fillStyle = "#fff";
-      ctx.font = "600 34px 'Space Grotesk', sans-serif";
-      ctx.fillText("tapp.africa/amara", 70, H - 80);
+      const handle = handleFromName(safeName);
+      const handleSize = fitFont(ctx, handle, 600, "Space Grotesk", 34, W - 140);
+      ctx.font = `600 ${handleSize}px 'Space Grotesk', sans-serif`;
+      ctx.fillText(handle, 70, H - 80);
       ctx.font = "500 24px 'Space Grotesk', sans-serif";
       ctx.globalAlpha = 0.75;
       ctx.fillText("TAP TO CONNECT", 70, H - 42);
@@ -115,12 +138,43 @@
     return new THREE.MeshStandardMaterial({ color: colorA, roughness: 0.6, metalness: 0.1 });
   }
 
-  let colors = { a: "#e8622c", b: "#ff2e82" };
+  const nameInput = document.getElementById("customName");
+  const roleInput = document.getElementById("customRole");
+
+  function readSaved(key, fallback) {
+    try {
+      return localStorage.getItem(key) || fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  let colors = {
+    a: readSaved("tapp_custom_color_a", "#e8622c"),
+    b: readSaved("tapp_custom_color_b", "#ff2e82"),
+  };
+  let profile = {
+    name: readSaved("tapp_custom_name", nameInput ? nameInput.value : "Amara Boateng"),
+    role: readSaved("tapp_custom_role", roleInput ? roleInput.value : "Founder · Studio Kente"),
+  };
+  if (nameInput) nameInput.value = profile.name;
+  if (roleInput) roleInput.value = profile.role;
+
+  function persist() {
+    try {
+      localStorage.setItem("tapp_custom_name", profile.name);
+      localStorage.setItem("tapp_custom_role", profile.role);
+      localStorage.setItem("tapp_custom_color_a", colors.a);
+      localStorage.setItem("tapp_custom_color_b", colors.b);
+    } catch (e) {
+      /* private browsing or storage disabled — customization just won't persist */
+    }
+  }
 
   function buildMaterials() {
     const edge = edgeMaterial(colors.a);
-    const front = new THREE.MeshStandardMaterial({ map: drawFace({ colorA: colors.a, colorB: colors.b, back: false }), roughness: 0.45, metalness: 0.12 });
-    const back = new THREE.MeshStandardMaterial({ map: drawFace({ colorA: colors.b, colorB: colors.a, back: true }), roughness: 0.45, metalness: 0.12 });
+    const front = new THREE.MeshStandardMaterial({ map: drawFace({ colorA: colors.a, colorB: colors.b, back: false, name: profile.name, role: profile.role }), roughness: 0.45, metalness: 0.12 });
+    const back = new THREE.MeshStandardMaterial({ map: drawFace({ colorA: colors.b, colorB: colors.a, back: true, name: profile.name, role: profile.role }), roughness: 0.45, metalness: 0.12 });
     return [edge, edge, edge, edge, front, back];
   }
 
@@ -129,19 +183,41 @@
   card.rotation.y = 0.5;
   scene.add(card);
 
-  function repaint(a, b) {
-    colors = { a, b };
+  function repaintMaterials() {
     card.material.forEach((m) => m.dispose());
     card.material = buildMaterials();
+    persist();
   }
 
-  document.querySelectorAll(".card-viewer__swatches .swatch").forEach((sw) => {
-    sw.addEventListener("click", () => {
-      document.querySelectorAll(".card-viewer__swatches .swatch").forEach((s) => s.classList.remove("is-active"));
+  function setColors(a, b) {
+    colors = { a, b };
+    repaintMaterials();
+  }
+
+  function setProfile(name, role) {
+    profile = { name, role };
+    repaintMaterials();
+  }
+
+  const swatchEls = document.querySelectorAll(".card-viewer__swatches .swatch");
+  swatchEls.forEach((sw) => {
+    if (sw.dataset.a === colors.a && sw.dataset.b === colors.b) {
+      swatchEls.forEach((s) => s.classList.remove("is-active"));
       sw.classList.add("is-active");
-      repaint(sw.dataset.a, sw.dataset.b);
+    }
+    sw.addEventListener("click", () => {
+      swatchEls.forEach((s) => s.classList.remove("is-active"));
+      sw.classList.add("is-active");
+      setColors(sw.dataset.a, sw.dataset.b);
     });
   });
+
+  if (nameInput) {
+    nameInput.addEventListener("input", () => setProfile(nameInput.value, roleInput ? roleInput.value : profile.role));
+  }
+  if (roleInput) {
+    roleInput.addEventListener("input", () => setProfile(nameInput ? nameInput.value : profile.name, roleInput.value));
+  }
 
   /* ---------- sizing ---------- */
   function resize() {

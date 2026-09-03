@@ -164,13 +164,24 @@
       </div>
       <div class="card-viewer__copy">
         <div class="eyebrow" style="color:var(--pink-dark)">See it in 3D</div>
-        <h2>Every detail, front and back.</h2>
-        <p>What you see here is exactly what ships — spin it around, pick a colorway, and picture it in your own hand.</p>
-        <div class="card-viewer__swatches">
-          <button class="swatch is-active" data-a="#e8622c" data-b="#ff2e82" style="background:linear-gradient(135deg,#e8622c,#ff2e82)"></button>
-          <button class="swatch" data-a="#6b2fb3" data-b="#35dde0" style="background:linear-gradient(135deg,#6b2fb3,#35dde0)"></button>
-          <button class="swatch" data-a="#14100d" data-b="#4b1f82" style="background:linear-gradient(135deg,#14100d,#4b1f82)"></button>
-          <button class="swatch" data-a="#ffd53d" data-b="#e8622c" style="background:linear-gradient(135deg,#ffd53d,#e8622c)"></button>
+        <h2>Make it yours.</h2>
+        <p>Type your name, pick a finish — the card above updates live. What you see here is exactly what ships.</p>
+
+        <div class="form-row">
+          <label for="customName">Name</label>
+          <input type="text" id="customName" maxlength="24" value="Amara Boateng" autocomplete="off" />
+        </div>
+        <div class="form-row">
+          <label for="customRole">Title / role</label>
+          <input type="text" id="customRole" maxlength="28" value="Founder · Studio Kente" autocomplete="off" />
+        </div>
+
+        <label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:8px">Colorway</label>
+        <div class="card-viewer__swatches" id="viewerSwatches">
+          <button class="swatch is-active" data-a="#e8622c" data-b="#ff2e82" style="background:linear-gradient(135deg,#e8622c,#ff2e82)" aria-label="Kente Sunrise"></button>
+          <button class="swatch" data-a="#6b2fb3" data-b="#35dde0" style="background:linear-gradient(135deg,#6b2fb3,#35dde0)" aria-label="Indigo Adire"></button>
+          <button class="swatch" data-a="#14100d" data-b="#4b1f82" style="background:linear-gradient(135deg,#14100d,#4b1f82)" aria-label="Midnight Ebony"></button>
+          <button class="swatch" data-a="#ffd53d" data-b="#e8622c" style="background:linear-gradient(135deg,#ffd53d,#e8622c)" aria-label="Nile Wave"></button>
         </div>
         <a href="pricing.html" class="btn btn--ink" style="margin-top:30px">Get this card</a>
       </div>
