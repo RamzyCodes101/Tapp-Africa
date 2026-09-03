@@ -1104,6 +1104,8 @@ html.no-anim .story-panel__card {
 @media (max-width: 980px) {
   .nav__links { display: none; }
   .nav__burger { display: flex; }
+  .nav__actions { gap: 10px; }
+  .nav__actions .btn { padding: 0.65em 1.1em; font-size: 0.82rem; }
   .hero__inner { grid-template-columns: 1fr; }
   .hero__visual { order: -1; margin-bottom: 20px; }
   .hero__badge { top: 18px; right: 18px; width: 48px; height: 48px; }
