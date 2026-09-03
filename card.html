@@ -80,6 +80,77 @@
     </div>
   </section>
 
+  <!-- ================= LIVE TAP DEMO ================= -->
+  <section id="demo">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Try it yourself</div>
+        <h2>This is what happens when you tap.</h2>
+        <p>No app. No download. Watch a real profile land on the phone below.</p>
+      </div>
+
+      <div class="tap-demo">
+        <div class="tap-demo__stage">
+          <div class="tap-demo__card-wrap" id="demoCardWrap">
+            <div class="tapp-card" id="demoCard">
+              <div class="tapp-card__top">
+                <div class="tapp-card__chip"></div>
+                <svg class="tapp-card__wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <div class="tapp-card__name">Amara Boateng</div>
+                <div class="tapp-card__role">Founder · Studio Kente</div>
+              </div>
+            </div>
+            <button class="btn btn--pink tap-demo__btn" id="tapDemoBtn">Tap to demo</button>
+          </div>
+
+          <div class="tap-demo__phone">
+            <div class="tap-demo__notch"></div>
+            <div class="tap-demo__screen">
+              <div class="tap-demo__lock" id="demoLock">
+                <div class="tap-demo__lock__clock">9:41</div>
+                <p>Hold a TAPP card near the top of your phone</p>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg>
+              </div>
+              <div class="tap-demo__profile" id="demoProfile">
+                <div class="tap-demo__avatar" id="demoAvatar">AB</div>
+                <h3 id="demoName">Amara Boateng</h3>
+                <p id="demoRole">Founder · Studio Kente</p>
+                <div class="tap-demo__links">
+                  <a href="#">Save Contact</a>
+                  <a href="#">Instagram</a>
+                  <a href="#">WhatsApp</a>
+                  <a href="#">Portfolio</a>
+                </div>
+                <span class="tap-demo__saved" id="demoSaved">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Saved to Contacts
+                </span>
+              </div>
+            </div>
+            <div class="tap-demo__contact" id="demoContact">
+              <div class="tap-demo__ring"></div>
+              <div class="tap-demo__ring"></div>
+              <div class="tap-demo__ring"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tap-demo__copy">
+          <div class="eyebrow">The whole exchange</div>
+          <h3>From tap to saved contact in under a second.</h3>
+          <p>Click the card (or the button) to see exactly what the other person sees — no app opens on their end, nothing to install.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>Works through the browser, instantly</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>Every link and detail, one screen</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>One tap to save you to their contacts</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= 3D VIEWER ================= -->
   <section id="viewer">
     <div class="container card-viewer">
@@ -399,5 +470,6 @@
 <script src="js/script.js"></script>
 <script src="js/three-card.js"></script>
 <script src="js/lanyard.js"></script>
+<script src="js/tap-demo.js"></script>
 </body>
 </html>
