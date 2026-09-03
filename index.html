@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TAPP African — Tap. Connect. Unbox Africa's Network.</title>
+<meta name="description" content="TAPP African is a smart NFC card that shares your contact, socials, and story with a single tap — no app required." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/style.css" />
+
+<script>
+  // Safety net: if GSAP (CDN) fails or is slow, force-reveal the page instead
+  // of leaving it stuck behind the preloader / hidden animation states.
+  (function () {
+    function forceReveal() {
+      document.documentElement.classList.add("no-anim");
+      var pre = document.getElementById("preloader");
+      if (pre) pre.remove();
+    }
+    window.__tappForceReveal = forceReveal;
+    window.addEventListener("load", function () {
+      setTimeout(function () {
+        if (typeof window.gsap === "undefined") forceReveal();
+      }, 2500);
+    });
+  })();
+</script>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="preloader" id="preloader">
+  <div class="preloader__mark" id="preloaderMark">TAPP</div>
+</div>
+
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="siteNav">
+  <div class="container nav__inner">
+    <a href="#top" class="logo">
+      <span class="logo-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg>
+      </span>
+      TAPP<span style="color:var(--pink)">.</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#designs">Designs</a>
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav__actions">
+      <a href="#pricing" class="btn btn--pink">Get Your Tapp</a>
+      <button class="nav__burger" id="burgerBtn" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#designs">Designs</a>
+  <a href="#how">How it works</a>
+  <a href="#features">Features</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#faq">FAQ</a>
+</div>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="blob blob--yellow blob-shape-1"></div>
+    <div class="blob blob--orange blob-shape-2"></div>
+    <div class="hero__badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg>
+    </div>
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <h1 class="hero__title">
+          <span class="line"><span>Tap once.</span></span>
+          <span class="line"><span>Connect</span></span>
+          <span class="line"><span>for life.</span></span>
+        </h1>
+        <p class="hero__sub">One NFC card that shares your number, socials, portfolio and story — instantly, on any phone, no app required for the person you tap.</p>
+        <div class="hero__cta">
+          <div class="pill-cta">
+            <a href="#pricing" class="btn btn--ink">Get Your Tapp — from $19</a>
+            <a href="#how" class="circle-btn" aria-label="See how it works">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+        <p class="hand-note hero__note">Works on any<br>iPhone &amp; Android</p>
+      </div>
+
+      <div class="hero__visual">
+        <p class="hand-note hand-note--right hero__ship-note">Shipping across<br>Africa &amp; worldwide</p>
+        <div class="tapp-card" id="heroCard">
+          <div class="hero__card-shadow"></div>
+          <div class="tapp-card__top">
+            <div class="tapp-card__chip"></div>
+            <svg class="tapp-card__wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/>
+              <path d="M2 17c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round" opacity="0.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="tapp-card__name">Amara Boateng</div>
+            <div class="tapp-card__role">Founder · Studio Kente</div>
+          </div>
+        </div>
+        <div class="hero__swatches">
+          <button class="swatch is-active" data-a="#e8622c" data-b="#ff2e82" style="background:linear-gradient(135deg,#e8622c,#ff2e82)"></button>
+          <button class="swatch" data-a="#6b2fb3" data-b="#35dde0" style="background:linear-gradient(135deg,#6b2fb3,#35dde0)"></button>
+          <button class="swatch" data-a="#14100d" data-b="#4b1f82" style="background:linear-gradient(135deg,#14100d,#4b1f82)"></button>
+          <button class="swatch" data-a="#ffd53d" data-b="#e8622c" style="background:linear-gradient(135deg,#ffd53d,#e8622c)"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MARQUEE ================= -->
+  <div class="marquee-band">
+    <div class="marquee-track" id="marqueeTrack">
+      <span>Tap to share</span><span>No app needed</span><span>Instant contacts</span><span>Made for Africa</span>
+      <span>Tap to share</span><span>No app needed</span><span>Instant contacts</span><span>Made for Africa</span>
+    </div>
+  </div>
+
+  <!-- ================= DESIGNS CAROUSEL ================= -->
+  <section id="designs">
+    <div class="container">
+      <div class="carousel-head">
+        <div>
+          <div class="eyebrow" style="color:var(--pink-dark)">Pick your style</div>
+          <h2 style="font-size:clamp(2rem,4.4vw,3.2rem);margin-top:14px">Our card designs</h2>
+          <p style="margin-top:16px;max-width:480px">Every finish is inspired by pattern-work from across the continent. New drops the first of every month.</p>
+        </div>
+        <div class="carousel-nav">
+          <button class="is-prev" id="designPrev" aria-label="Previous">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="is-next" id="designNext" aria-label="Next">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="carousel-track" id="designTrack">
+        <div class="design-card" style="background:var(--orange)">
+          <span class="design-card__tag">Best seller</span>
+          <span class="design-card__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg></span>
+          <div>
+            <div class="design-card__name">Kente Sunrise</div>
+            <div class="design-card__meta">Eco PVC · 4 colorways</div>
+          </div>
+        </div>
+        <div class="design-card" style="background:var(--purple)">
+          <span class="design-card__tag">New</span>
+          <span class="design-card__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg></span>
+          <div>
+            <div class="design-card__name">Indigo Adire</div>
+            <div class="design-card__meta">Wood finish · Limited</div>
+          </div>
+        </div>
+        <div class="design-card" style="background:var(--pink)">
+          <span class="design-card__tag">Team pick</span>
+          <span class="design-card__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg></span>
+          <div>
+            <div class="design-card__name">Maasai Flame</div>
+            <div class="design-card__meta">Eco PVC · 4 colorways</div>
+          </div>
+        </div>
+        <div class="design-card" style="background:var(--cyan)">
+          <span class="design-card__tag">Limited</span>
+          <span class="design-card__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg></span>
+          <div>
+            <div class="design-card__name">Nile Wave</div>
+            <div class="design-card__meta">Metal finish</div>
+          </div>
+        </div>
+        <div class="design-card" style="background:var(--ink);color:var(--cream)">
+          <span class="design-card__tag">Classic</span>
+          <span class="design-card__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg></span>
+          <div>
+            <div class="design-card__name">Midnight Ebony</div>
+            <div class="design-card__meta">Wood finish</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" style="color:var(--pink-dark)">The process</div>
+          <h2>How it works</h2>
+        </div>
+        <p class="hand-note">Consider us your<br>networking sidekick</p>
+        <a href="#pricing" class="btn btn--pink">Become a member</a>
+      </div>
+      <div class="fan-wrap">
+        <div class="fan-cards">
+          <div class="fan-card" style="--bg:var(--cyan)">
+            <div class="fan-card__step">Step #1</div>
+            <div class="fan-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="3"/><path d="M8 6h8M8 10h8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Set up your profile</h3>
+            <p>Add your contact info, socials, portfolio and payment links in minutes.</p>
+          </div>
+          <div class="fan-card" style="--bg:var(--pink)">
+            <div class="fan-card__step">Step #2</div>
+            <div class="fan-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="3"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <h3>Pick your card</h3>
+            <p>Choose a finish and colorway inspired by patterns from across Africa.</p>
+          </div>
+          <div class="fan-card" style="--bg:var(--yellow)">
+            <div class="fan-card__step">Step #3</div>
+            <div class="fan-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Tap any phone</h3>
+            <p>Hold your card near their phone — your profile opens instantly, no app needed.</p>
+          </div>
+          <div class="fan-card" style="--bg:var(--purple);color:var(--white)">
+            <div class="fan-card__step">Step #4</div>
+            <div class="fan-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Stay connected</h3>
+            <p>They save your details in one tap. Update your info and every card updates too.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PACKAGING ================= -->
+  <section>
+    <div class="packaging">
+      <div class="eyebrow packaging__eyebrow">Handcrafted, front &amp; back</div>
+      <h2>Every card tells a story.</h2>
+      <div class="packaging__stage">
+        <p class="hand-note packaging__note">Front: your name<br>&amp; NFC chip</p>
+        <div class="tapp-card tapp-card--front" style="--card-a:#e8622c;--card-b:#ffd53d">
+          <div class="tapp-card__top">
+            <div class="tapp-card__chip"></div>
+            <svg class="tapp-card__wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div class="tapp-card__name">Zanele Dube</div>
+            <div class="tapp-card__role">Photographer</div>
+          </div>
+        </div>
+        <div class="tapp-card tapp-card--back" style="--card-a:#6b2fb3;--card-b:#35dde0">
+          <div class="tapp-card__top">
+            <div class="tapp-card__chip"></div>
+          </div>
+          <div>
+            <div class="tapp-card__name" style="font-size:0.85rem">tapp.africa/zanele</div>
+          </div>
+        </div>
+        <p class="hand-note hand-note--right packaging__note packaging__note--right">Back: your custom<br>tapp.africa link</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURES ================= -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" style="color:var(--pink-dark)">Everything included</div>
+          <h2>One card. Every way to connect.</h2>
+        </div>
+      </div>
+      <div class="features__grid">
+        <div class="feature-tile feature-tile--wide feature-tile--tall reveal">
+          <svg class="feature-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z" stroke-linejoin="round"/></svg>
+          <h4>Instant profile share</h4>
+          <p>One tap opens your full profile — no app, no download, no waiting.</p>
+        </div>
+        <div class="feature-tile reveal">
+          <h4>All your links</h4>
+          <p>Instagram, WhatsApp, LinkedIn, portfolio — in one place.</p>
+        </div>
+        <div class="feature-tile feature-tile--purple reveal">
+          <h4>Tap analytics</h4>
+          <p>See who tapped, when, and where.</p>
+        </div>
+        <div class="feature-tile feature-tile--dark reveal">
+          <h4>Free updates</h4>
+          <p>Change your info anytime — your card updates instantly for everyone.</p>
+        </div>
+        <div class="feature-tile reveal">
+          <h4>Payment links</h4>
+          <p>Attach M-Pesa, bank, or PayPal details for instant payment.</p>
+        </div>
+        <div class="feature-tile reveal">
+          <h4>Team cards</h4>
+          <p>Order matching cards for your whole team or business.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STATS ================= -->
+  <section class="stats">
+    <div class="container stats__grid">
+      <div class="stat"><h3 data-count="12000">0</h3><p>Cards tapped monthly</p></div>
+      <div class="stat"><h3 data-count="35">0</h3><p>Countries reached</p></div>
+      <div class="stat"><h3 data-count="49" data-decimal="1">0</h3><p>Average rating</p></div>
+      <div class="stat"><h3 data-count="0">0</h3><p>Paper cards wasted</p></div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <div class="eyebrow" style="justify-content:center;color:var(--pink-dark)">Loved across the continent</div>
+        <h2>What our tappers say</h2>
+      </div>
+      <div class="testimonials__track-wrap">
+        <div class="carousel-track" id="testTrack">
+          <div class="t-card">
+            <div class="t-card__stars">★★★★★</div>
+            <p>"I closed a client meeting before I even sat down. Tapped my card, they had my portfolio open already."</p>
+            <div class="t-card__author">
+              <div class="t-card__avatar" style="background:var(--orange)">KA</div>
+              <div><strong>Kwame Asante</strong><small>Creative Director, Accra</small></div>
+            </div>
+          </div>
+          <div class="t-card">
+            <div class="t-card__stars">★★★★★</div>
+            <p>"The design sold me before the tech did. It's the only business card I've ever gotten compliments on."</p>
+            <div class="t-card__author">
+              <div class="t-card__avatar" style="background:var(--purple)">NM</div>
+              <div><strong>Naledi Mokoena</strong><small>Founder, Studio Bloom</small></div>
+            </div>
+          </div>
+          <div class="t-card">
+            <div class="t-card__stars">★★★★★</div>
+            <p>"Analytics showed me exactly which events were worth attending. Genuinely changed how I network."</p>
+            <div class="t-card__author">
+              <div class="t-card__avatar" style="background:var(--cyan-dark)">TO</div>
+              <div><strong>Tunde Okafor</strong><small>Sales Lead, Lagos</small></div>
+            </div>
+          </div>
+          <div class="t-card">
+            <div class="t-card__stars">★★★★★</div>
+            <p>"Ordered ten for my team. Setup took an afternoon and now every handshake ends in a tap."</p>
+            <div class="t-card__author">
+              <div class="t-card__avatar" style="background:var(--pink-dark)">SI</div>
+              <div><strong>Sade Ibrahim</strong><small>COO, Nairobi</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonials__nav">
+        <button class="is-prev" id="testPrev" aria-label="Previous">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="is-next" id="testNext" aria-label="Next">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRICING ================= -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <div class="eyebrow" style="justify-content:center;color:var(--pink-dark)">Pricing</div>
+        <h2>Pick your card, tap for life.</h2>
+        <p>One-time purchase. No subscriptions, no hidden fees — your profile stays free forever.</p>
+      </div>
+      <div class="pricing__grid">
+        <div class="price-card">
+          <h3>Starter</h3>
+          <div class="price-card__amount">$19<span>/card</span></div>
+          <p class="price-card__desc">For your first tap into digital networking.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>1 PVC card, 4 colorways</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited profile updates</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>Basic tap analytics</li>
+          </ul>
+          <a href="#" class="btn btn--ghost btn--block">Choose Starter</a>
+        </div>
+        <div class="price-card price-card--featured">
+          <div class="price-card__tag">Most popular</div>
+          <h3>Pro</h3>
+          <div class="price-card__amount">$34<span>/card</span></div>
+          <p class="price-card__desc">Eco wood finish plus payment links and full analytics.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>1 wood or metal card</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>Payment &amp; booking links</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>Full analytics dashboard</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>Priority support</li>
+          </ul>
+          <a href="#" class="btn btn--light btn--block">Choose Pro</a>
+        </div>
+        <div class="price-card">
+          <h3>Business</h3>
+          <div class="price-card__amount">$29<span>/seat</span></div>
+          <p class="price-card__desc">Matching cards and shared analytics for your whole team.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>5+ team cards, custom branding</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>Centralized team dashboard</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>Dedicated account manager</li>
+          </ul>
+          <a href="#" class="btn btn--ghost btn--block">Talk to sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <div class="eyebrow" style="justify-content:center;color:var(--pink-dark)">FAQ</div>
+        <h2>Good to know</h2>
+      </div>
+      <div class="faq__list">
+        <div class="faq-item is-open">
+          <button class="faq-item__q"><span>Do I need an app to use TAPP?</span><span class="faq-item__icon"></span></button>
+          <div class="faq-item__a"><p>No. The person you tap opens your profile straight in their browser — nothing to download on their end. You only manage your own profile from your dashboard.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q"><span>Does it work on iPhone and Android?</span><span class="faq-item__icon"></span></button>
+          <div class="faq-item__a"><p>Yes, TAPP uses standard NFC that's built into every modern smartphone. Every card also ships with a QR code as a backup for older devices.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q"><span>Can I change my details after ordering?</span><span class="faq-item__icon"></span></button>
+          <div class="faq-item__a"><p>Absolutely — edit your profile anytime from your dashboard and the same physical card instantly reflects the change. No reprinting, ever.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q"><span>Where are the cards made?</span><span class="faq-item__icon"></span></button>
+          <div class="faq-item__a"><p>Every TAPP card is designed and assembled by partner workshops across Africa, using recycled PVC or sustainably sourced wood.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q"><span>How fast is shipping?</span><span class="faq-item__icon"></span></button>
+          <div class="faq-item__a"><p>3–5 business days within Africa, 7–12 days internationally. Your digital profile is live the moment you sign up, before your card even arrives.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA BANNER ================= -->
+  <section>
+    <div class="cta-banner">
+      <div class="blob blob-shape-1"></div>
+      <h2>Ready to tap in?</h2>
+      <p>Join thousands of African creators, founders and teams who ditched paper cards for good.</p>
+      <div class="btn-row">
+        <a href="#pricing" class="btn btn--light">Get Your Tapp</a>
+        <a href="#how" class="btn btn--ghost" style="border-color:var(--white);color:var(--white)">Learn more</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="#top" class="logo">
+          <span class="logo-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" stroke-linecap="round"/></svg>
+          </span>
+          TAPP<span style="color:var(--pink)">.</span>
+        </a>
+        <p>Africa's smart networking card. Tap once, connect for life.</p>
+        <form class="footer__newsletter" onsubmit="return false">
+          <input type="email" placeholder="Your email" required />
+          <button type="submit">Join →</button>
+        </form>
+      </div>
+      <div class="footer__col">
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#designs">Designs</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 TAPP African. Made with pride, across Africa.</span>
+      <div class="footer__socials">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3v10.5a3.5 3.5 0 1 1-3-3.46V7a7 7 0 0 0 7 4V8a4 4 0 0 1-4-5Z" stroke-linejoin="round"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
